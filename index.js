@@ -84,22 +84,6 @@ function convArr(s,arr=[],a=0){
 }
 
 console.log(convArr('hello'))
-function arrCon(arr,a=0,arrN=[]){
-if(arr[a] == undefined){
-    return arrN
-}
 
-if(Array.isArray(arr[a])){
-    arrCon(arr[a], 0)
 
-}
-else{
-    arrN.push(arr[a])
-    arrCon(arr,a+1,arrN)
-
-}
-}
-
-console.log(arrCon([1,2,3,[4,5,[6,7]]]))
-//[arr.push()]
 
