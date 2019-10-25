@@ -86,4 +86,12 @@ function convArr(s,arr=[],a=0){
 console.log(convArr('hello'))
 
 
+function foo(a){
+    
+}
+
+console.log(' * *')
+console.log('*   *')
+console.log(' * * ')
+
 
