@@ -93,5 +93,49 @@ function foo(a){
 console.log(' * *')
 console.log('*   *')
 console.log(' * * ')
+let st = /reg/
 
+
+st[Symbol.match] = false
+
+//console.log("/reg/".startsWith(st))
+
+function quiqSort(arr){
+    if(arr.length < 2) return arr;
+    let pivot = arr[0];
+    let low = [];
+    let high = [];
+    for(let i = 1; i < arr.length; i++){
+	if(arr[i] >= pivot){
+	    high.push(arr[i])
+	}
+	else {
+	    low.push(arr[i])
+	}
+    }
+    return [...quiqSort(low),pivot,...quiqSort(high)]
+}
+
+console.log(quiqSort([7,2,5,6,1,1,3,0,12,8,7,4]))
+
+let k = {
+    toString(){
+	return 'test'
+    }
+}
+
+
+
+console.log(k+'!')
+let o1 = {
+    person:{
+	age:34,
+	name:'Alex'
+    }
+}
+let  tt = (o,f,i=0) => i == f.length ? 
+    o :
+    tt(o[f[i]],f,i+1)
+
+console.log(tt(o1,['person','name']))
 

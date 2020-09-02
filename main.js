@@ -52,120 +52,131 @@ class ChildB extends ParentB{
 	super.foo()
 	console.log('ChildB',this.n)
     }
-}
-
-//let a = new ChildA;
-//let b = new ChildB;
-//b.foo.call(a)
-let a = 5;
-let b = 6;
-
-let z = 4;
-
-
-function foo1(val){
-    return val*2;
-}
-function bar(x=a + 1, y = foo1(x), v = z +1){
-    console.log(x,y,v)
-}
-let a1 = [2,3,3,3,3,3,4,5,6,6,7,8,7,77,10,9,9,9,12,12,55,55,11,11,11,11,15,15,15];
-
-function countRepeat(){
-    let res = {};
-    let mid = new Map()
-    for(let i = 0; i < a1.length; i++){
-	if(mid.has(a1[i])){
-	    if(a1[i] in res){
-		res[a1[i]]++;
-	    }
-	    else {
-		res[a1[i]] = 2;
-	    }
-	}
-	else{
-	    mid.set(a1[i],0)
-	}
     }
-    return res;
+let a;
+
+function User() {
+a()
 }
 
-function countRepeatSerial(){
-
-    let res = {};
-    let one = {};
-    
-    
-    for(let i = 0; i < a1.length; i++
-    ){
-	if(a1[i + 1] == a1[i]){
-	    if(a1[i] in res){
-		if(a1[i] in one)
-		    delete res[a1[i]];
-		else
-		    res[a1[i]]++;
-		
-	    }
-	    else {
-		if(!(a1[i] in one))
-		    res[a1[i]] = 1;
-	    }
-	}
-	else {
-	    if(a1[i] in res &&  a1[i - 1] == a1[i]){
-		
-		     res[a1[i]]++;
-	    }
-	    else {
-		if(a1[i] in one){
-		    one[a1[i]]++;
-		    
-		}
-		else {
-		    if(a1[i] in res)
-			delete res[a1[i]]
-		    one[a1[i]] = 1;
-		}
-	    }
-	}
-    }
-    
-    
-    return res;
-}
-
-//console.log(countRepeatSerial())
+//let u = new User('alex','kul');
 
 
-const stream = fs.createReadStream(__filename,{highWaterMark: 8
-});
 
-const streamW = fs.createWriteStream('1.js',{
-highWaterMark: 8
-});
-
-let count = 0;
-let body = "";
-
-stream.on('data',(c) => {
-    count++;
-    if(count == 1){
-	stream.pause();
-
-    setTimeout(()=>{
-	stream.resume();
-	console.log('resume');
-    },2000)
-    }
-    body += c;
-    
-    console.log(c)
+setTimeout(() => {
+ User()
 })
+//User()
+a = () => 0
 
-stream.on('end',() => {
+let arr = [5,6,7];
+let o = { item: 9 };
+({item: arr[3]} = o);
+console.log(arr);
 
-console.log(body.toString('utf8'))
-})
+function incNumber(delta = 0){
+    return (ctx, val) => {
+	return Number.call(ctx, val + delta)
+}
+}
+console.log(
+Array.apply(null,{length :5}).map(Number.call, Number).map(a => a + 1))
+console.log(new Array(10).fill().map(incNumber(2)))
 
-stream.pipe(streamW)
+let obj1 = Object.call(null,{
+name: 'Alex',
 
+});
+console.log(obj1)
+console.log(Reflect.ownKeys(obj1))
+console.log(Object.keys(obj1))
+console.log(obj1.hasOwnProperty('name'))
+
+function newObj(constructor,...params){
+    let obj = {}
+    Object.setPrototypeOf(obj, constructor.prototype)
+    return constructor.apply(obj, params) || obj
+}
+
+function Car(name){
+this.name=name
+}
+
+Car.prototype.getName = function() {
+return this.name
+}
+
+let car = newObj(Car,'audi')
+console.log(car)
+
+function SmallCar(name, speed){
+ Car.call(this, name )
+ this.speed = speed
+}
+
+Object.setPrototypeOf(SmallCar.prototype ,Car.prototype)
+
+
+SmallCar.prototype.getSpeed = function() {
+ return this.speed
+}
+
+SmallCar.prototype.getInfo = function () {
+    return Car.prototype.getName.call(this) + ' ' + this.getSpeed()
+}
+
+
+let smCar = newObj(SmallCar, 'audi',120);
+console.log(smCar.getInfo() )
+let person = {
+    a: 1
+};
+
+let person1 = person
+console.log(person === person1);
+person = null
+console.log(person === person1);
+console.log(person1)
+let animal = {
+    eat(){
+	console.log('I am animal!')
+    }
+}
+
+let rabbit = {
+    __proto__: animal,
+    eat(){
+	super.eat()
+    }
+}
+
+let otherAnimal = {
+    __proto__: rabbit,
+    eat(){
+	super.eat()
+    }
+}
+
+otherAnimal.eat()
+
+function f1(tag){
+    let trimTag = tag.trim()
+    let existsScopes = []
+    for( let i = 0; i < trimTag.length; i++) {
+	let sym = trimTag[i]
+	if(i === 0) {
+	    existsScopes.push([])
+	}
+	if( sym === '<' || sym === '>') {
+	    let currentIndex = existsScope.length - 1
+	    let currentScopes = existsScope[ currentIndex ]
+	    let currentIndexChild = currentScopes.length - 1
+	    if( currentIndexChild === -1 ) {
+	)?????
+	    } else if( currentIndexChild === 0 ){
+		let currentScopesChild = currentScopes[currentIndexChild]
+		currentScopesChild.push(sym)
+	    }
+	}
+    }
+}
